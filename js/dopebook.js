@@ -96,7 +96,7 @@ class Range {
 	}
 
 	calcDistance() {
-		this.distance = getDistance(this.startCoords, this.endCoords);
+		this.distance = getDistance(this.startCoords, this.endCoords).toFixed(2);
 	}
 
 	// update sets the current coords
