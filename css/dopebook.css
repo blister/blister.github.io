@@ -51,6 +51,17 @@ main {
 	padding: 2vh;
 }
 
+#prototypes #output, #prototypes #controls {
+	margin: 20px;
+}
+
+#prototypes table tr td:first-child {
+	text-align: right;
+}
+#prototypes table tr td:last-child {
+	font-family: monospace;
+}
+
 /* footer */
 footer {
 	background-color: #333;
