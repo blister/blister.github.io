@@ -128,7 +128,6 @@ class Range {
 let range;
 
 function rangeFinder(ev) {
-
 	if ( ! range ) {
 		range = new Range(el('startCoords'), el('endCoords'), el('currentCoords'), el('distance'));
 	}
