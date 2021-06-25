@@ -53,7 +53,7 @@ function getDistance(coords1, coords2, units) {
 	if ( units != undefined && units == 'meters' ) {
 		return (radius * c) * 1000;
 	} else { // default is yards
-		return (radius * c).milesToYards();
+		return (radius * c).milesToYards() / 3;
 	}
 	
 }
@@ -81,7 +81,7 @@ class Range {
 		this.active = true;
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			this.startCoords = pos.coords;
-		}.bind(this));
+		}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 
 		this.__intervalId = setInterval(this.update.bind(this), 1000);
 	}
@@ -90,7 +90,7 @@ class Range {
 		this.active = false;
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			this.endCoords = pos.coords;
-		}.bind(this));
+		}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 
 		clearInterval(this.__intervalId);
 	}
@@ -109,7 +109,7 @@ class Range {
 				this.calcDistance();
 
 				this.updateElements();
-			}.bind(this));
+			}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 		}
 	}
 
