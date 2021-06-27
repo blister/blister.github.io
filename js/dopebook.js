@@ -27,7 +27,6 @@ Number.prototype.deg2rad = function() {
 String.prototype.deg2rad = function() {
 	return parseFloat(this).deg2rad();
 }
-
 Number.prototype.milesToYards = function() {
 	return (this * 5280) / 3;
 }
@@ -83,16 +82,20 @@ class Range {
 			this.startCoords = pos.coords;
 		}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 
-		this.__intervalId = setInterval(this.update.bind(this), 1000);
+		//this.__intervalId = setInterval(this.update.bind(this), 1000);
 	}
 
 	end() {
 		this.active = false;
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			this.endCoords = pos.coords;
+
+			this.calcDistance();
+			this.updateElements();
+
 		}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 
-		clearInterval(this.__intervalId);
+		//clearInterval(this.__intervalId);
 	}
 
 	calcDistance() {
@@ -100,6 +103,7 @@ class Range {
 	}
 
 	// update sets the current coords
+	// not currently used. auto updates were acting wonky...
 	update() {
 		if ( this.active ) {
 			console.log('updating...');
@@ -116,11 +120,12 @@ class Range {
 	updateElements() {
 		// do something
 		this.startEl.innerHTML    = `${this.startCoords.latitude}, ${this.startCoords.longitude}`;
-		this.currentEl.innerHTML  = `${this.endCoords.latitude}, ${this.endCoords.longitude}`;
-		this.distanceEl.innerHTML = `${this.distance}`;
+		//this.currentEl.innerHTML  = `${this.endCoords.latitude}, ${this.endCoords.longitude}`;
+		//this.distanceEl.innerHTML = `${this.distance}`;
 		
 		if ( ! this.active ) { 
 			this.endEl.innerHTML = `${this.endCoords.latitude}, ${this.endCoords.longitude}`;
+			this.distanceEl.innerHTML = `${this.distance}`;
 		}
 	}
 }
