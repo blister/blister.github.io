@@ -80,6 +80,12 @@ class Range {
 		this.active = true;
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			this.startCoords = pos.coords;
+
+			this.endCoords = { latitude: 0, longitude: 0 };
+			this.distance  = 0;
+
+			this.updateElements();
+
 		}.bind(this), (err) => console.error(err), { enableHighAccuracy: true });
 
 		//this.__intervalId = setInterval(this.update.bind(this), 1000);
