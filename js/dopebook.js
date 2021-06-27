@@ -131,7 +131,7 @@ class Range {
 		
 		if ( ! this.active ) { 
 			this.endEl.innerHTML = `${this.endCoords.latitude}, ${this.endCoords.longitude}`;
-			this.distanceEl.innerHTML = `${this.distance}`;
+			this.distanceEl.innerHTML = `${this.distance} ft`;
 		}
 	}
 }
